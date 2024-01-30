@@ -49,7 +49,9 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: Colors.grey,
       appBar: AppBar(
-        title: const Text('Google Sign In Without Firebase'),
+        title: const Text('Google Sign In Without Firebase'),centerTitle: true,shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30),bottomRight: Radius.circular(30))
+      ),
       ),
       body: Center(
         child: Column(
