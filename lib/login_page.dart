@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import 'login_api.dart';
+import 'success_login.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -23,6 +24,11 @@ class _LoginPageState extends State<LoginPage> {
       log(user.id);
       log(user.photoUrl.toString());
       if (context.mounted) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => SuccessLogin(
+                    name: user.displayName!, email: user.email)));
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Column(
               children: [
@@ -36,23 +42,7 @@ class _LoginPageState extends State<LoginPage> {
       log(exception.toString());
     }
   }
-///>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>This is Google signOut Method>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>///
-  Future googleSignOut() async {
-    try {
-      await GoogleSignInService.logout();
-      log('Sign Out Success');
-      if (context.mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Sign Out Success',style: TextStyle(color: Colors.white),)));
-      }
-    } catch (exception) {
-      log(exception.toString());
-      if (context.mounted) {
-        ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text('Sign Out Failed')));
-      }
-    }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +56,6 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ///>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> google signOut method call>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>///
-            ElevatedButton(
-              onPressed: googleSignOut,
-              child: const Text('Sign Out'),
-            ),
            const SizedBox(
              height: 550,
            ),

@@ -22,7 +22,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign/login_page.dart';
 
-import 'other/MyHomePage.dart';
 
 void main (){
   runApp(MyApp());
@@ -32,7 +31,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: LoginPage(),
     );
   }
